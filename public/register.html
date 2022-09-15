@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+		integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+	<link rel="stylesheet" href="css/style.css" />
+	<title>Log in</title>
+</head>
+
+<body>
+	<div class="join-container">
+		<header class="join-header">
+			<h4><i class="fas fa-smile"></i> Register</h4>
+		</header>
+		<main class="join-main">
+
+
+			<div class="grid-2-c">
+				<div class="">
+					<div class="form-control">
+						<div class="form-row">
+							<!-- <label for="username">User</label> -->
+							<div id="img-avatar-holder" onclick="document.getElementById('updt-user-img').click()"
+								class="img-avatar-holder">
+								<div class="button-container">
+									<!-- <button> <i class="fas fa-plus" ></i> </button> -->
+									<label> <b><i class="fas fa-plus"></i></b> Upload image</label>
+								</div>
+							</div>
+							<input type="file" onchange="upldediImg('profile')" name="user-img" id="updt-user-img"
+								placeholder="Enter username..." class="hide" />
+						</div>
+					</div>
+				</div>
+				<div class="main-content-area">
+
+					<div class="form-container">
+
+						<h4>Info</h4>
+
+						<div class="form-control">
+							<label for="username">Username</label>
+							<input type="text" name="username" id="updt-userName" placeholder="Enter username..."
+								required />
+						</div>
+						<div class="form-control">
+							<label for="username">first name</label>
+							<input type="text" name="firstName" id="updt-firstName" placeholder="Enter username..."
+								required />
+						</div>
+						<div class="form-control">
+							<label for="username">last name</label>
+							<input type="text" name="lastName" id="updt-lastName" placeholder="Enter username..."
+								required />
+						</div>
+
+					</div>
+
+
+					<div class="form-container">
+
+						<h4>contacts </h4>
+
+						<div class="form-control">
+							<label for="username">Email</label>
+							<input type="email" name="userEmail" id="updt-userEmail" placeholder="Enter username..."
+								required />
+						</div>
+
+					</div>
+
+					<div class="form-container">
+
+						<h4>Update password</h4>
+
+						<div class="form-control">
+							<label for="username">password</label>
+							<input type="password" name="password" id="updt-password" placeholder="Enter password.."
+								required />
+						</div>
+						<div class="form-control">
+							<label for="username">Confirm password</label>
+							<input type="password" name="password" id="set-updt-password" placeholder="Enter password.."
+								required />
+						</div>
+
+					</div>
+
+					<button type="submit" onclick="registerUser()" class="btn btn-dark btn-rounded "> <i
+							class="fas fa-"></i> Register now</button>
+				</div>
+			</div>
+
+		</main>
+	</div>
+
+	<script src="js/main.js"></script>
+	<script src="js/utils/functions.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+		integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+	<link rel="stylesheet" href="css/style.css" />
+	<title>Log in</title>
+</head>
+
+<body>
+
+	<div class="join-container-log">
+		<header class="join-header">
+			<h1><i class="fas fa-smile"></i> ChatCord</h1>
+			<h4>Login</h4>
+		</header>
+		<main class="join-main">
+			<div class="">
+				<div class="">
+	
+					<div class="form-control">
+						<label for="username">Username</label>
+						<input type="email" name="log-email" id="log-email" placeholder="Enter username..." required />
+					</div>
+	
+					<div class="form-control">
+						<label for="username">password</label>
+						<input type="password" name="log-password" id="log-password" placeholder="Enter password.." required />
+					</div>
+	
+					<div class="form-control">
+						<button onclick="loginUser()" type="submit" class="btn btn-light  btn-rounded">Join Chat</button>
+					</div>
+
+					<!-- <hr/> -->
+	
+					<div class="form-control">
+						<button onclick="loginGoogle()" type="submit" class="btn btn-dark  btn-rounded"> <i class="fa fa-Google"></i> Google</button>
+					</div>
+	
+					<div class="form-control">
+						<button onclick="register()" type="submit" class="btn btn-dark  btn-rounded"> Register</button>
+					</div>
+	
+					<div class="form-control">
+						<button onclick="passwordRecovery()" type="submit" class="btn btn-dark btn-rounded"> <i class="fa fa-Google"></i> Forgot password</button>
+					</div>
+	
+				</div>
+			</div>
+	
+		</main>
+	</div>
+
+	<script src="js/main.js"></script>
+	<script src="js/utils/functions.js"></script>
+
+</body>
+
+</html>

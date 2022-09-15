@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+    integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="css/style.css" />
+  <title>ChatCord App</title>
+</head>
+
+<body>
+  <div class="chat-container">
+    <main class="chat-main">
+
+      <!-- ------------------------------------------------------------------------------------------------------------------- -->
+      <!-- SIDE BAR LEFT ----------------------------------------------------------------------------------------------------- -->
+      <!-- ------------------------------------------------------------------------------------------------------------------- -->
+      <div class="chat-sidebar">
+
+        <!-- Rooms  -->
+        <div>
+          <div class="sibar-row">
+            <form id="groups-menu-form" action="chat.html">
+
+              <h6 class="title"> Chartcord </h6>
+
+              <!-- Chat room list -->
+              <ul id="room-list" class="room-list">
+              </ul>
+
+            </form>
+
+            <button onclick="setLayout('new-group')" class="btn btn-alt btn-md btn-block"> <i class="fas fa-plus"></i>
+            </button>
+          </div>
+
+
+          <!-- <h6 class="title"> My groups </h6> -->
+
+          <form id="rooms-list-form" action="chat.html">
+            <input type="hidden" name="chatContent" id="chatContent" />
+            <input type="hidden" name="username" id="username" />
+            <input type="hidden" name="room" id="chat_room" />
+            <input type="hidden" name="searchIndex" id="search_index" />
+            <input type="hidden" name="searchCatIndex" id="search_cat_index" />
+          </form>
+
+          <!-- Chat room list -->
+          <div id="my-room-list" class="my-room-list sibar-row"></div>
+
+          <div class="sibar-row">
+            <a onclick="setLayoutLoad('new-group', 'new-group')" class="btn btn-alt btn-md btn-block btn-round">
+              <i class="fas fa-plus"></i>
+              <span class="">new group</span>
+            </a>
+            <a onclick="setLayoutLoad('default', 'default')" class="btn btn-alt btn-md btn-block btn-round">
+              <i class="fas fa-compass"></i>
+              <span class="">Browse</span>
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ------------------------------------------------------------------------------------------------------------------- -->
+      <!-- MAIN CONTENT ------------------------------------------------------------------------------------------------------ -->
+      <!-- ------------------------------------------------------------------------------------------------------------------- -->
+
+      <div class="">
+
+        <!-- CHAT MENU -->
+        <div class="nav-menu">
+          <ul class="nav-menu-list">
+            <!-- <li class="nav-item">
+              <span class="nav-link">
+                <i class="fas fa-plus"></i>
+                Add
+              </span>
+            </li> -->
+          </ul>
+          <ul class="nav-menu-list">
+            <li class="nav-item">
+              <span class="nav-link" onclick="setLayoutLoad('profile', 'profile')" class="nav-link">
+                <i class="fas fa-user"></i> profile
+              </span>
+            </li>
+            <li class="nav-item">
+              <span class="nav-link" onclick="setLayoutLoad('search-results', 'search-results')">
+                <i class="fas fa-search"></i> search
+              </span>
+            </li>
+            <li class="nav-item">
+              <span class="nav-link" onclick="logOut()">
+                <i class="fas fa-paper-plane"></i>  log out
+              </span>
+            </li>
+            <!-- <li class="nav-item">
+              <div class="form-group">
+                <input type="text" name="" id="" placeholder="search">
+              </div>
+            </li> -->
+          </ul>
+        </div>
+
+        <!-- PROFILE AREA HERE -->
+        <div id="user_profile_area" class="hide user_profile_area"></div>
+
+        <!-- BROWSE GROUPS AREA HERE -->
+        <div id="browse_groups_area" class="hide browse_groups_area"></div>
+
+        <!-- NEW GROUP FORM -->
+        <div id="browse_new_input_group_form" class="hide browse_new_input_group_form"></div>
+
+        <!-- NEW GROUP CATEGORY FORM -->
+        <!-- <div id="browse_new_input_group_form_cat" class=" browse_new_input_group_form_cat"></div> -->
+
+        <!-- CHAT MESSESAGE AREA ----------------------------------------------------------------------------------------------- -->
+        <div class="grid-col-3 ">
+
+          <!-- SEARCH & RESULTS AREA HERE -->
+          <div id="search-results" class="hide search-results">
+
+            <div class="menu-title">
+              <span id="count_results" name="count_results"></span> rooms for " <span id="index_result"
+                name="index_result"></span> "
+            </div>
+
+            <div class="nav-menu">
+              <div class="from-row">
+
+                <div class="form-group">
+                  <input type="text" id="search-input" name="searchInput" placeholder="Search" />
+                </div>
+
+                <div class="form-group">
+                  <button onclick="setLayoutLoad('search-results','search-results')"
+                    class="btn btn-light btn-rounded btn-md ">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="nav-menu">
+
+              <!--  SEARCH RESULTS CATEGORY LIST  -->
+              <ul id="results-cat-list" class="results-cat-list">
+                <li onclick="setLayoutLoad('search-results','search-results', 'all')" class="link active">
+                  All
+                </li>
+              </ul>
+            </div>
+
+            <!--  SEARCH RESULTS  -->
+            <div id="search-results-card" class="search-results-card">
+
+
+
+            </div>
+          </div>
+
+           <div id="group-chat-info" class=" hide chat-sidebar ">
+
+          
+            
+            <div class="sibar-row">
+              <button id="leave-btn" class="btn btn-link btn-md ">
+                <i class="fas fa-external-link-alt"></i> Leave group
+              </button>
+            </div>
+
+          </div>
+
+          <div id="chat_message_area" class="hide chat_message_area">
+          </div>
+
+          <!-- ------------------------------------------------------------------------------------------------------------------- -->
+          <!-- SIDE BAR RIGHT ---------------------------------------------------------------------------------------------------- -->
+          <!-- ------------------------------------------------------------------------------------------------------------------- -->
+          <div id="group-chat-info" class="  chat-sidebar ">
+
+            <!-- Active Users -->
+            <!-- Active room -->
+            <div class="sibar-row">
+              <h3><span id="room-name"></span></h3>
+              <!-- Room members -->
+              <ul id="users"></ul>
+            </div>
+            
+            <div class="sibar-row">
+              <button id="leave-btn" class="btn btn-link btn-md ">
+                <i class="fas fa-external-link-alt"></i> Leave group
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+    </main>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js"
+    integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4=" crossorigin="anonymous"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="js/utils/functions.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/io-chat.js"></script>
+  <script src="js/search-results.js"></script>
+</body>
+
+</html>
