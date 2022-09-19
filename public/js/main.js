@@ -134,6 +134,8 @@ async function loginUser() {
         .then(res => res.json())
         .then(res => {
 
+            if(res.status=== "fail") throw res.code+"-"+res.message
+
             localStorage.setItem("userName", res.userName); // Get user info
 
             localStorage.setItem("token", res.token); // get JWT token
@@ -141,7 +143,7 @@ async function loginUser() {
             res.status === "success" ? window.location = "chat.html" : Error();
 
         })
-        .catch(err => console.log(err))
+        .catch(err => alert(err))
 
 }
 
@@ -319,8 +321,6 @@ async function postRoom() {
                 .then(res => res.json())
                 .then(res => {
 
-                    console.log(res);
-                    alert(res.message);
                     window.location.reload();
 
                 })

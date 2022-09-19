@@ -31,6 +31,7 @@ if(room !== "default"){
       if( room !== "search-results"){
         // Join Group chatroom
         socket.emit('joinRoom', { username, room });
+        socket.emit('joinRoomPrivate', { username1:"kpbarasa", username2:"GraceK" });
       }
     }
   }
@@ -303,6 +304,7 @@ function outputRoomName(room) {
   roomName.innerText = room;
 }
 
+
 // Add users to DOM
 function outputUsers(users) {
   console.log(users);
@@ -312,16 +314,32 @@ function outputUsers(users) {
     userList.appendChild(li);
 
     const div = document.createElement('div');
-    // div.innerText = user.username;
+    div.classList.add('profile-small-container');
+    div.classList.add('grid-col-2-sm');
     li.appendChild(div);
 
-    const img = document.createElement('img');
-    img.src = user.image;
-    div.appendChild(img);
+    const imgHolder = document.createElement('div');
+    imgHolder.classList.add('profile-small-image-holder')
+    div.appendChild(imgHolder);
 
-    const span = document.createElement('span');
-    span.innerText = user.username;
-    li.appendChild(span);
+    const img = document.createElement('img');
+    img.src = "https://th.bing.com/th/id/OIP.kzBJh7OsGaHYoYX1pMj1uwHaHa?pid=ImgDet&rs=1"
+    // img.src = "/media/"+user.image;
+    imgHolder.appendChild(img);
+
+    const divText = document.createElement('div');
+    div.appendChild(divText);
+
+    const spanTitle = document.createElement('span');
+    spanTitle.classList.add('title-medium');
+    spanTitle.innerText = user.username;
+    divText.appendChild(spanTitle);
+
+    const spanText = document.createElement('span');
+    spanText.classList.add('title-small');
+    spanText.innerText = user.username;
+    divText.appendChild(spanText);
+
   });
 }
 

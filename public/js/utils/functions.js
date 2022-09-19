@@ -222,6 +222,7 @@ function resultsCardLayout(res) {
 //  @Line:    0
 function groupCategoryList_menu(roomCategories) {
     roomCategories.map(categories => {
+
         var list = document.createElement("li");
         list.setAttribute("name", "select-group-cat");
         list.setAttribute("id", "select-group-cat");
@@ -232,13 +233,15 @@ function groupCategoryList_menu(roomCategories) {
 
         var i = document.createElement("i");
         i.classList.add("fas")
-        i.classList.add("fa-info")
+        i.classList.add("fa-users")
         link.appendChild(i);
 
         var span = document.createElement("span");
         span.innerHTML = categories.name;
         link.appendChild(span);
+
         return document.querySelector('.room-cat-list').appendChild(list);
+
     })
 
 }
@@ -428,6 +431,8 @@ function clearImg(){
 //Get user data 
 function getUserData_elements(res){
     console.log(res);
+            document.getElementById('profile-user-title').innerHTML = res[0].displayName
+            // document.getElementById('profile-user-status').innerHTML = date()
             document.getElementById('updt-userName').value = res[0].displayName
             document.getElementById('updt-firstName').value = res[0].firstName
             document.getElementById('updt-lastName').value = res[0].lastName
@@ -440,22 +445,16 @@ function getUserData_elements(res){
             document.querySelector('.img-avatar-holder').appendChild(img);
 }
 
-function testFunc() {
-
-    console.log(document.getElementById('Description').value);
-
-}
-
-function register(paams) {
+function register() {
 
     window.location = "register.html";
 }
-function loginGoogle(paams) {
+function loginGoogle() {
 
     window.location = "user/login/google";
     
 }
-function passwordRecovery(paams) {
+function passwordRecovery() {
 
     window.location = "user/recover/password" ;
 

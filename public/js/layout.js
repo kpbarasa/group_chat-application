@@ -26,7 +26,6 @@ function setLayoutLoad(id, roomName, subIndex) {
   let searchHeader = document.getElementById('search-header');
   let searchHeaderBrowse = document.getElementById('search-header-browse');
   let searchInput = document.getElementById('search-input');
-  alert(searchInput.value)
 
   layoutIndex.value = id;
   layoutChatRoom.value = roomName
@@ -95,7 +94,9 @@ function show_browseGroupArea() {
   return document.getElementById('browse_groups_area').innerHTML = `
     <div id="group-content" class="schat-messages chat-main-sub">
 
+      <!-- ====================================================================================================  -->
       <!-- MAIN SIDE NAV HERE  -->
+      <!-- ====================================================================================================  -->
       <div class="chat-content">
 
         <h4 class="content-title">Discover</h4>
@@ -121,7 +122,9 @@ function show_browseGroupArea() {
 
       </div>
 
+      <!-- ====================================================================================================  -->
       <!-- CONTENT NAV HERE  -->
+      <!-- ====================================================================================================  -->
       <div class="chat-content">
 
         <div class="chat-banner">

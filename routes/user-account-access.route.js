@@ -41,7 +41,7 @@ router.get('/auth/google/callback', passport.authenticate('google', { failureRed
 
 // @desc         Get user data 
 // @route        /user/get/data
-router.get('/get/data', auth, (userAuthAccessController.getUseData))
+router.get('/get/data', auth,(userAuthAccessController.getUseData))
 
 // Send password recovery email link
 router.post('/recover/password', (userAccountRecovery.sendRecoveryEmail_link))

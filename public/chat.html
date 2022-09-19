@@ -84,18 +84,18 @@
           </ul>
           <ul class="nav-menu-list">
             <li class="nav-item">
-              <span class="nav-link" onclick="setLayoutLoad('profile', 'profile')" class="nav-link">
-                <i class="fas fa-user"></i> profile
-              </span>
-            </li>
-            <li class="nav-item">
               <span class="nav-link" onclick="setLayoutLoad('search-results', 'search-results')">
                 <i class="fas fa-search"></i> search
               </span>
             </li>
             <li class="nav-item">
+              <span class="nav-link" onclick="setLayoutLoad('profile', 'profile')" class="nav-link">
+                <i class="fas fa-user"></i> profile
+              </span>
+            </li>
+            <li class="nav-item">
               <span class="nav-link" onclick="logOut()">
-                <i class="fas fa-paper-plane"></i>  log out
+                <i class="fas fa-user"></i>  log out
               </span>
             </li>
             <!-- <li class="nav-item">
@@ -117,6 +117,51 @@
 
         <!-- NEW GROUP CATEGORY FORM -->
         <!-- <div id="browse_new_input_group_form_cat" class=" browse_new_input_group_form_cat"></div> -->
+        <div class="grid-col-2">
+
+          <!-- SEARCH & RESULTS AREA HERE -->
+          <div id="search-results" class="hide search-results">
+
+            <div class="menu-title">
+              <span id="count_results" name="count_results"></span> rooms for " <span id="index_result"
+                name="index_result"></span> "
+            </div>
+
+            <div class="nav-menu">
+              <div class="from-row">
+
+                <div class="form-group">
+                  <input type="text" id="search-input" name="searchInput" placeholder="Search" />
+                </div>
+
+                <div class="form-group">
+                  <button onclick="setLayoutLoad('search-results','search-results')"
+                    class="btn btn-light btn-rounded btn-md ">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="nav-menu">
+
+              <!--  SEARCH RESULTS CATEGORY LIST  -->
+              <ul id="results-cat-list" class="results-cat-list">
+                <li onclick="setLayoutLoad('search-results','search-results', 'all')" class="link active">
+                  All
+                </li>
+              </ul>
+            </div>
+
+            <!--  SEARCH RESULTS  -->
+            <div id="search-results-card" class="search-results-card">
+
+
+
+            </div>
+          </div>
+          </div>
 
         <!-- CHAT MESSESAGE AREA ----------------------------------------------------------------------------------------------- -->
         <div class="grid-col-3 ">
@@ -164,14 +209,20 @@
             </div>
           </div>
 
-           <div id="group-chat-info" class=" hide chat-sidebar ">
-
-          
-            
+           <div id="group-chat-info" class=" hide chat-sidebar ">  
             <div class="sibar-row">
-              <button id="leave-btn" class="btn btn-link btn-md ">
-                <i class="fas fa-external-link-alt"></i> Leave group
-              </button>
+              <div class="room-menu"></div>
+            </div>
+            <div class="sibar-row">
+              <div id="profile-small" class="profile-small-container grid-col-2-sm">
+                <div class="profile-small-image-holder">
+                  <img src="https://th.bing.com/th/id/OIP.kzBJh7OsGaHYoYX1pMj1uwHaHa?pid=ImgDet&rs=1" alt="">
+                </div>
+                <div class="">
+                  <span id="profile-user-title" class="title-medium">Title here</span>
+                  <span id="profile-user-status" class="title-small">Logged in </span>
+                </div>
+              </div>
             </div>
 
           </div>
@@ -182,7 +233,7 @@
           <!-- ------------------------------------------------------------------------------------------------------------------- -->
           <!-- SIDE BAR RIGHT ---------------------------------------------------------------------------------------------------- -->
           <!-- ------------------------------------------------------------------------------------------------------------------- -->
-          <div id="group-chat-info" class="  chat-sidebar ">
+          <div id="group-chat-info" class=" chat-sidebar ">
 
             <!-- Active Users -->
             <!-- Active room -->

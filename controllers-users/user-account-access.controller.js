@@ -2,7 +2,6 @@ var session = require('express-session')
 const moment = require('moment');
 const fs = require('fs');
 const uuid = require("uuid");
-// const user = mongoose.model("User");
 const sha256 = require("js-sha256");
 const jwt = require("jwt-then");
 const userDataModel = require('../models/user.data.model')
@@ -13,6 +12,7 @@ const userDataModel = require('../models/user.data.model')
 // @Model   /models/user.data.model 
 exports.register = async (req, res, next) => {
   try {
+    console.log(req.body);
     const { displayName, firstName, lastName, email, password, image } = req.body;
 
     const emailRegex = /@gmail.com|@yahoo.com|@hotmail.com|@live.com/;
@@ -27,10 +27,10 @@ exports.register = async (req, res, next) => {
     
     if (userExists) throw "User with same email already exits.";
 
-    const splitted = image[0].split(';base64,');
-    const format = splitted[0].split('/')[1];
+    // const splitted = image[0].split(';base64,');
+    // const format = splitted[0].split('/')[1];
 
-    const fileName = 'img-profile-' + displayName + '-' + uuid.v4() + '.' + format;
+    // const fileName = 'img-profile-' + displayName + '-' + uuid.v4() + '.' + format;
 
     const userData = new userDataModel({
       displayName,
@@ -38,12 +38,12 @@ exports.register = async (req, res, next) => {
       lastName,
       email,
       password: sha256(password + process.env.SALT),
-      image: fileName,
+      // image: fileName,
       googleId: 0
     });
 
     await userData.save();
-    fs.writeFileSync('./assets/images/' + fileName, splitted[1], { encoding: 'base64' });
+    // fs.writeFileSync('./assets/images/' + fileName, splitted[1], { encoding: 'base64' });
     console.log("saved");
 
     res.json({
@@ -63,7 +63,6 @@ exports.register = async (req, res, next) => {
 // @route   POST /register
 // @Model   /models/user.data.model 
 exports.updateUser = async (req, res) => {
-  console.log("req.body");
   const { userName, firstName, lastName, email, password, image } = req.body;
 
   const emailRegex = /@gmail.com|@yahoo.com|@hotmail.com|@live.com/;
@@ -117,8 +116,10 @@ exports.login = async (req, res, next) => {
     const userData = await userDataModel.findOne({
       email,
       password: sha256(password + process.env.SALT),
-    });
+   });
+    
     console.log(userData);
+
     if (!userData) throw new Error("throw Email and Password did not match.");
 
     const token = await jwt.sign({ id: userData.id }, process.env.SECRET);
@@ -131,7 +132,7 @@ exports.login = async (req, res, next) => {
       session.token = token,
       session.sessionStart = moment().format(),
       session.sessionEnd = 00,
-      console.log("Logged in");
+
       res.json({
         status: "success",
         message: "User logged in successfully!",
@@ -140,7 +141,6 @@ exports.login = async (req, res, next) => {
       });
 
   } catch (Err) {
-
     let errMsg = Err;
 
     res.json({
@@ -238,9 +238,8 @@ exports.logout = async (req, res) => {
 // @Model   /models/user.data.model 
 exports.getUseData = async (req, res, next) => {
   try {
-    console.log(req.session.sessId);
+    
     const userData = await userDataModel.find({ _id: req.session.sessId })
-    console.log(userData);
 
     // if(!userData) throw "Sorry unable to  load user data"; 
 

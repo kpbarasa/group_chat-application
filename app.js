@@ -10,7 +10,7 @@ app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({extended: true , limit: '50mb'}));
 
 var store = new MongoDBStore({
-  uri: process.env.DATABASE,
+  uri: process.env.MONGO_URI,
   collection: 'chatSessions'
 });
 
@@ -52,10 +52,10 @@ app.use("/chatroom", require("./routes/chatroom"));
 const errorHandlers = require("./handlers/errorHandler");
 app.use(errorHandlers.notFound);
 app.use(errorHandlers.mongoseErrors);
+app.use(morgan('dev')); 
 
 if (process.env.ENV === "DEVELOPMENT") {
     app.use(errorHandlers.developmentErrors);
-    app.use(morgan('dev'));
   } else {
     app.use(errorHandlers.productionErrors);
   }

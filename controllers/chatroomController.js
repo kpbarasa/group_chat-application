@@ -6,10 +6,7 @@ const Messesages = require("../models/Message");
 
 exports.createChatroom = async (req, res) => {
 
-  // console.log(req.body);
-
   const { name, user, category, Description, image, icon_image } = req.body;
-  console.log(image[0].split(';base64,'))
 
   const nameRegex = /^[A-Za-z\s]+$/;
 
@@ -22,10 +19,8 @@ exports.createChatroom = async (req, res) => {
   
   const splitted = image[0].split(';base64,');
   const format = splitted[0].split('/')[1];
-  console.log(format);
-  const fileName = 'img-group-'+name+'-'+ uuid.v4() + '-' + user.username + '.' + format
-
-  console.log(fileName);
+  
+  const fileName = 'img-group-'+name+'-'+ uuid.v4() + '-' + user.username + '.' + format;
 
   const chatroom = new Chatroom({
     name,
@@ -75,18 +70,27 @@ exports.getAllChatrooms = async (req, res) => {
   res.json(chatrooms);
 };
 
+// @desc    Get all room categories
+// @route   GET /chatroom
+// @Model   /models/Chatroom-category.model 
 exports.getAllCats = async (req, res) => {
   const Categories = await ChatroomCategory.find({});
 
   res.json(Categories);
 };
 
+// @desc    Get all room categories
+// @route   GET /chatroom
+// @Model   /models/Chatroom-category.model 
 exports.getAllChatroomsCats = async (req, res) => {
   const categories = await Chatroom.find({});
 
   res.json(categories);
 };
 
+// @desc    Get user rooms
+// @route   GET /get/:id
+// @Model   /models/Chatroom.model 
 exports.getUserChatrooms = async (req, res) => {
 
   const id = req.params.id
@@ -96,6 +100,9 @@ exports.getUserChatrooms = async (req, res) => {
   res.json(chatrooms);
 };
 
+// @desc    Get all room category
+// @route   GET /chatroom
+// @Model   /models/Chatroom-category.model 
 exports.getChatrooms_Category = async (req, res) => {
 
   const id = req.params.cat_id
@@ -106,6 +113,9 @@ exports.getChatrooms_Category = async (req, res) => {
 
 };
 
+// @desc    Get Messages
+// @route   GET /messeges/get/:id
+// @Model   /models/Message 
 exports.getMesseges = async (req, res) => {
 
   const id = req.params.id
@@ -113,8 +123,12 @@ exports.getMesseges = async (req, res) => {
   const chatMessesages = await Messesages.find({ chatroom: id });
 
   res.json(chatMessesages);
+
 };
 
+// @desc    Delete room
+// @route   GET /del/:id
+// @Model   /models/chatroom
 exports.DeleteChatroom = async (req, res) => {
 
   const id = req.params.id
@@ -122,4 +136,5 @@ exports.DeleteChatroom = async (req, res) => {
   const chatrooms = await Chatroom.findByIdAndDelete({ _id: id });
 
   res.json(chatrooms);
+
 };

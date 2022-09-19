@@ -23,14 +23,6 @@ const sendRecoveryEmail_link = async (req, res) => {
         const userData = await User.findOne({ email: req.body.email });
         if (!userData) throw new Error("user with given email doesn't exist");
 
-        // let token = await Token.findOne({ userId: userData._id });
-        // if (!token) {
-        //     token = await new Token({
-        //         userId: userData._id,
-        //         token: crypto.randomBytes(32).toString("hex"),
-        //     }).save();
-        // }
-
         let token = crypto.randomBytes(32).toString("hex");
         console.log(token);
 
