@@ -1,3 +1,4 @@
 /node_module
 /config/config.env
+/public
 .env

@@ -7,9 +7,9 @@ const moment = require('moment');
 
 const redis = require("redis");
 const Redis = require('ioredis');
-const client = redis.createClient();
+// const client = redis.createClient();
 const redisCache = require('./reddis-serve');
-const getRedisCache = require('./reddis-serve');
+// const getRedisCache = require('./reddis-serve');
 
 const formatMessage = require("./utils/messages");
 const formatMessageMedia = require("./utils/messages_media");
@@ -47,171 +47,83 @@ io.on("connection", (socket) => {
     // console.log(io.of("/").adapter);
 
     // LIsten for joining chat room 
-    // socket.on("joinRoom", async ({ username, room }) => {
+    socket.on("joinRoom", async ({ username, room }) => {
 
-    //     const user = userJoin(socket.id, username, room);
-    //     if (user.room) {
-
-    //         socket.join(user.room);
-
-    //         const roomInfo = await roomDb.find({ name: user.room })
-    //         const roomId = await roomDb.findOne({ name: user.room })
-
-    //         // if(roomId === null) throw new Error("error no room selected")
-
-    //         // load older messeges
-    //         const olderMesseges = await messageDB.find({ chatroom: roomId._id })
-
-    //         // Send room info 
-    //         socket.emit("roomInfo", roomInfo[0]);
-
-    //         if (olderMesseges.length > 0) {
-
-    //             // Send older  messeges 
-    //             socket.emit("olderMesseges", olderMesseges);
-    //             // Send users and room info
-    //             io.to(user.room).emit("roomUsers", {
-    //                 room: user.room,
-    //                 users: getRoomUsers(user.room),
-    //             });
-
-    //         }
-    //         if (olderMesseges.length === 0) {
-
-    //             // Welcome current user
-    //             // socket.emit("message", formatMessage(botName, "Welcome to ChatCord!: "+user.room));
-
-    //             // Broadcast when a user connects
-    //             socket.broadcast
-    //                 .to(user.room)
-    //                 .emit(
-    //                     "message",
-    //                     formatMessage(botName, `${user.username} has joined the chat`)
-    //                 );
-
-    //             // Send users and room info
-    //             io.to(user.room).emit("roomUsers", {
-    //                 room: user.room,
-    //                 users: getRoomUsers(user.room),
-    //             });
-
-    //         }
-
-    //         //    Load cache messages 
-    //         const getRedisCache = async () => {
-    //             // Connect to Redis at 127.0.0.1, port 6379.
-    //             const redisClient = new Redis({
-    //                 host: '127.0.0.1',
-    //                 port: 6379,
-    //             });
-
-    //             // getting it back from redis: first geet the keys ; then get all the data
-    //             const keys = await redisClient.lrange('messagesList', 0, -1) // 0, -1 => all items 
-    //             // console.log(keys);
-    //             // console.log(keys.length);
-
-    //             if (keys.length !== 0) {
-    //                 let keysArr = []
-    //                 keys.map(res =>
-    //                     keysArr.push(JSON.parse(res))
-    //                 )
-
-    //                 // console.log(keysArr);
-
-    //                 // Send older  messeges 
-    //                 socket.emit("messagesCache", keysArr);
-    //             }
-
-    //         }
-    //         getRedisCache()
-
-
-
-    //     }
-
-    // });
-
-    // LIsten for joining chat room 
-    socket.on("joinRoomPrivate", async ({ username1, username2 }) => {
-
-        const user = usersJoin(socket.id, username1, username2);
-        console.log(user);
-        if (user.username2) {
+        const user = userJoin(socket.id, username, room);
+        if (user.room) {
 
             socket.join(user.room);
 
-            const roomInfo = await roomDb.findOne({ name: user.room })
-            // const roomId = await roomDb.findOne({ name: user.room })
+            const roomInfo = await roomDb.find({ name: user.room })
+            const roomId = await roomDb.findOne({ name: user.room })
 
             // if(roomId === null) throw new Error("error no room selected")
-            if (!roomInfo) {
 
-                const newMessage = new roomDb({
-                    name: user.room,
-                    user: "632324dae3d4a3d02d6c24fb",
-                    category: "632324dae3d4a3d02d6c24fb",
-                    Description: "private"
+            // load older messeges
+            const olderMesseges = await messageDB.find({ chatroom: roomId._id })
+
+            // Send room info 
+            socket.emit("roomInfo", roomInfo[0]);
+
+            if (olderMesseges.length > 0) {
+
+                // Send older  messeges 
+                socket.emit("olderMesseges", olderMesseges);
+                // Send users and room info
+                io.to(user.room).emit("roomUsers", {
+                    room: user.room,
+                    users: getRoomUsers(user.room),
                 });
 
-                await newMessage.save()
+            }
+            if (olderMesseges.length === 0) {
 
-                console.log("room saved ");
+                // Welcome current user
+                // socket.emit("message", formatMessage(botName, "Welcome to ChatCord!: "+user.room));
 
-                const roomInfo = await roomDb.findOne({ name: user.room })
+                // Broadcast when a user connects
+                socket.broadcast
+                    .to(user.room)
+                    .emit(
+                        "message",
+                        formatMessage(botName, `${user.username} has joined the chat`)
+                    );
 
-                // Send room info 
-                socket.emit("roomInfo", roomInfo);
+                // Send users and room info
+                io.to(user.room).emit("roomUsers", {
+                    room: user.room,
+                    users: getRoomUsers(user.room),
+                });
 
             }
-            else {
 
-                const roomInfo = await roomDb.findOne({ name: user.room })
+            //    Load cache messages 
+            const getRedisCache = async () => {
+                // Connect to Redis at 127.0.0.1, port 6379.
+                const redisClient = new Redis({
+                    host: '127.0.0.1',
+                    port: 6379,
+                });
 
-                // Send room info 
-                socket.emit("roomInfo", roomInfo);
+                // getting it back from redis: first geet the keys ; then get all the data
+                const keys = await redisClient.lrange('messagesList', 0, -1) // 0, -1 => all items 
+                // console.log(keys);
+                // console.log(keys.length);
 
-                // load older messeges
-                const olderMesseges = await messageDB.find({ chatroom: roomInfo._id })
+                if (keys.length !== 0) {
+                    let keysArr = []
+                    keys.map(res =>
+                        keysArr.push(JSON.parse(res))
+                    )
 
-                checkOldMessages(olderMesseges);
-            }
-
-            function checkOldMessages(olderMesseges) {
-
-                if (olderMesseges.length > 0) {
+                    // console.log(keysArr);
 
                     // Send older  messeges 
-                    socket.emit("olderMesseges", olderMesseges);
-                    // Send users and room info
-                    io.to(user.room).emit("roomUsers", {
-                        room: user.room,
-                        // users: getRoomUsers(user.room),
-                    });
-
+                    socket.emit("messagesCache", keysArr);
                 }
 
-                if (olderMesseges.length === 0) {
-
-                    // Broadcast when a user connects
-                    socket.broadcast
-                        .to(user.room)
-                        .emit(
-                            "message",
-                            formatMessage(botName, `${user.username} has joined the chat`)
-                        );
-
-                    // Send users and room info
-                    io.to(user.room).emit("roomUsers", {
-                        room: user.room,
-                        // users: getRoomUsers(user.room),
-                    });
-
-                }
             }
-
-
-            getRedisCache();
-
+            getRedisCache()
 
 
 
@@ -223,9 +135,10 @@ io.on("connection", (socket) => {
     socket.on("chatMessage", async (msg, user_Id) => {
         const user = getCurrentUser(socket.id);
         const userpr = getCurrentUser_private(socket.id);
+        console.log(user);
 
-        const userId_Db = await userDb.findOne({ displayName: userpr === "" ? user.username : userpr.username });
-        const roomId_Db = await roomDb.findOne({ displayName: userpr === "" ? user.room : userpr.room });
+        const userId_Db = await userDb.findOne({ displayName:user.username });
+        const roomId_Db = await roomDb.findOne({ name:user.room});
 
         const time = moment().format('h:mm a')
         const date = moment().format('DD-MM-YYYY')

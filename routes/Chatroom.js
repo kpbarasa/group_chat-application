@@ -12,9 +12,9 @@ const auth = require("../middlewares/auth-session");
 // @controller   /controllers/chatroomController: {POST createChatroom}
 router.post("/new", auth, catchErrors(chatroomController.createChatroom));
 
-// @Desc         New chat room
+// @Desc         New chat room category
 // @controller   /controllers/chatroomController: {POST createChatroom}
-router.post("/post/new", auth, catchErrors(chatroomController.createChatroomCat));
+router.post("/post/new/cat", auth, catchErrors(chatroomController.createChatroomCat));
 
 // @Desc         Get all chat rooms
 // @controller   /controllers/chatroomController: {POST createChatroom}

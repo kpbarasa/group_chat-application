@@ -36,6 +36,7 @@ async function registerUser() {
     const password = document.getElementById('updt-password');
 
     let media_data = document.getElementById('updt-user-img').files;
+    console.log(media_data);
 
     if (media_data[0]) {
 
@@ -352,7 +353,9 @@ async function getUserData() {
         .catch(err => console.log(err))
 
 }
+
 getUserData()
+
 window.onload = getUserRooms(), getUserRoomsSidebar(), getRoomsCat()
 
 
