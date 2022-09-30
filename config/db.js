@@ -6,7 +6,6 @@ dotenv.config({ path: './config/config.env' })
 
 const connectDB = async () => {
   try {
-    const PORT = process.env.ENV_PORT
     const atlasURI = process.env.MONGO_URI
 
     // Mongo db connection string  starts here
