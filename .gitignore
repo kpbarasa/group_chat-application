@@ -1,4 +1,4 @@
-# /node_module
-# /config/config.env
-# /public
-# .env
+/node_module
+/config/config.env
+/public
+.env
