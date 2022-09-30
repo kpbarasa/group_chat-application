@@ -49,7 +49,6 @@ socket.on('roomUsers', ({ room, users }) => {
   outputRoomName(room);
   outputUsers(users);
 });
-
 // Older Message from Db
 socket.on('olderMesseges', (olderMesseges) => {
 
