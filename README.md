@@ -1,5 +1,5 @@
 ### Group chat application
-Front_end; React Js
+* Front_end: React Js
 * Back-end: Node Js Express
 * Socket IO
 * Storage: Amazon S3 Bucket
