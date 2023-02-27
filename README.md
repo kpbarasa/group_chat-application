@@ -2,9 +2,6 @@
 * Front_end: React Js
 * Back-end: Node Js Express
 * Socket IO
-* Storage: Amazon S3 Bucket
-* Deployment: Docker, Amazon Elastic  BeanstalkMEssaging Rabbit MQ
-* Error Handdling: Sentry 
 
 ### Features:
  #### - Single chat
