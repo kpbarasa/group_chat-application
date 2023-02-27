@@ -11,19 +11,26 @@ Online Shopoping Store Nodejs Microservices RPC CI CD
  #### 2. Group chat
  #### 3. Upload media (images, audio, video)
 ---
-### **Dependencies:**
+
+### **Dependencies Front-End:**
    * express
    * nodemon (dev dependency)
-   * amqplib
-   * axios
-   * bcrypt
-   * cookie-parser
+   * socket.io
+   * mongoose
+   * jwt-then
+   * js-sha256
    * cors
    * dotenv
-   * jsonwebtoken
+   
+### **Dependencies Back-End:**
+   * express
+   * nodemon (dev dependency)
+   * socket.io
    * mongoose
-   * stripe
-   * winston
+   * jwt-then
+   * js-sha256
+   * cors
+   * dotenv
 
 
 ### **Git Ignore:**
