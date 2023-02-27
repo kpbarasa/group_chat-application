@@ -47,26 +47,13 @@ Online Shopoping Store Nodejs Microservices RPC CI CD
 ### .env(Environment file)
 ```
 
-NODE_ENV="DEVELOPMENT"
-APP_SECRET =''
+ENV=""
+SECRET =''
 
-# Mongo DB
-MONGODB_URI=''
+# Mongo DB URL
+DATABASE=''
 
 # Port
 PORT=''
-
-# Message broker 
-### Virtualhost
-MESSAGE_BROKER_URL=''
-CLOUDAMQP_URL=''
-
-# Stripe
-STRIPE_PRIVATE_KEY=''
-CLIENT_URL=''
-
-# Safaricom 
-SAFARICOM_ACCESS_TOKEN='' 
-SAFARICOM_CLIENT_URL=''
 ```
 
