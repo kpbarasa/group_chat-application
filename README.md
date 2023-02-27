@@ -7,9 +7,9 @@
 * Error Handdling: Sentry 
 
 ### Features:
- #### 1. Single chat
- #### 2. Group chat
- #### 3. Upload media (images, audio, video)
+ #### - Single chat
+ #### - Group chat
+ #### - Upload media (images, audio, video)
 ---
 
 ### **Dependencies Front-End:**
