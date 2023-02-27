@@ -4,6 +4,7 @@
 * Socket IO
 
 ### Features:
+ #### - Log in/out,  User authentication 
  #### - Single chat
  #### - Group chat
  #### - Upload media (images, audio, video)
