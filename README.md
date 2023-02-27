@@ -13,14 +13,14 @@ Online Shopoping Store Nodejs Microservices RPC CI CD
 ---
 
 ### **Dependencies Front-End:**
-   * express
+   * axios
    * nodemon (dev dependency)
-   * socket.io
-   * mongoose
-   * jwt-then
-   * js-sha256
-   * cors
-   * dotenv
+   * react
+   * react-dom
+   * react-router-dom
+   * react-scripts
+   * socket.io-client
+   * sweetalert2
    
 ### **Dependencies Back-End:**
    * express
@@ -31,18 +31,6 @@ Online Shopoping Store Nodejs Microservices RPC CI CD
    * js-sha256
    * cors
    * dotenv
-
-
-### **Git Ignore:**
-*   /server/node_modules
-*   .env./checkout/node_modules
-*   ./checkout/.env
-*   ./customer/node_modules
-*   ./customer/.env
-*   ./products/node_modules
-*   ./products/.env
-*   ./shopping/node_modules
-*   ./shopping/.env
 
 ### .env(Environment file)
 ```
